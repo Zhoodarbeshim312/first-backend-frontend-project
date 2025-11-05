@@ -37,7 +37,54 @@ const getProduct = async (req: Request, res: Response) => {
     });
   }
 };
+const deleteProduct = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const product = await prisma.product.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+    res.status(200).json({
+      success: true,
+      product,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: `Error in deleteProduct: ${error}`,
+    });
+  }
+};
+const updateProduct = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { url, title, price, desc } = req.body;
+    const product = await prisma.product.update({
+      where: {
+        id: Number(id),
+      },
+      data: {
+        url,
+        title,
+        price,
+        desc,
+      },
+    });
+    res.status(200).json({
+      success: true,
+      product,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: `Error in updateProduct: ${error}`,
+    });
+  }
+};
 export default {
   addProduct,
   getProduct,
+  deleteProduct,
+  updateProduct,
 };
