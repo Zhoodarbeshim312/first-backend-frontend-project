@@ -1,0 +1,89 @@
+.TodoCreate {
+  padding: 50px 0;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    margin-top: 40px;
+
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      max-width: 450px;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+
+      &:hover {
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      input,
+      button {
+        font-size: 16px;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        background-color: #f9f9f9;
+        width: 100%;
+        transition: all 0.3s ease;
+      }
+
+      input {
+        color: #333;
+        &::placeholder {
+          color: #aaa;
+        }
+
+        &:focus {
+          border-color: #007bff;
+          background-color: #fff;
+        }
+      }
+
+      button {
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+
+        &:hover {
+          background-color: #0056b3;
+          transform: translateY(-2px);
+        }
+
+        &:active {
+          background-color: #004085;
+        }
+      }
+    }
+  }
+
+  // Мобильная адаптивность
+  @media (max-width: 768px) {
+    .content {
+      h1 {
+        font-size: 24px;
+      }
+
+      .form {
+        padding: 20px;
+        max-width: 90%;
+      }
+    }
+  }
+}
