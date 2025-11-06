@@ -3,6 +3,7 @@ import { FC, useState } from "react";
 import scss from "./TodoCreate.module.scss";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { api } from "@/API/api";
 
 export interface IValues {
   url: string;
@@ -40,10 +41,7 @@ const TodoCreate: FC = () => {
     setError(null);
 
     try {
-      const res = await axios.post(
-        `http://localhost:5000/api/product/add`,
-        newProduct
-      );
+      const res = await axios.post(`${api}/add`, newProduct);
 
       if (res.data.success) {
         setValues({ url: "", title: "", price: "", desc: "" });
