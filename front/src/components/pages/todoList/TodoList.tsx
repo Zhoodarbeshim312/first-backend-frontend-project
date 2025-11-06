@@ -5,6 +5,7 @@ import axios from "axios";
 import Image from "next/image";
 import { GoTrash } from "react-icons/go";
 import { FaPencil } from "react-icons/fa6";
+import { api } from "@/API/api";
 
 export interface Root {
   success: boolean;
@@ -27,9 +28,7 @@ const TodoList: FC = () => {
 
   const getProducts = async () => {
     try {
-      const res = await axios.get<{ product: Product[] }>(
-        `http://localhost:5000/api/product/get`
-      );
+      const res = await axios.get<{ product: Product[] }>(`${api}/get`);
       setGetData(res.data.product);
     } catch (error) {
       console.log(`Error in getProducts: ${error}`);
@@ -37,9 +36,7 @@ const TodoList: FC = () => {
   };
   const deleteProduct = async (id: number) => {
     try {
-      const res = await axios.delete(
-        `http://localhost:5000/api/product/delete/${id}`
-      );
+      const res = await axios.delete(`${api}/delete/${id}`);
       setGetData(res.data.product);
     } catch (error) {
       console.log(`Error in deleteProduct: ${error}`);
@@ -47,9 +44,7 @@ const TodoList: FC = () => {
   };
   const updateProduct = async (id: number) => {
     try {
-      const res = await axios.delete(
-        `http://localhost:5000/api/product/update/${id}`
-      );
+      const res = await axios.delete(`${api}/update/${id}`);
       setGetData(res.data.product);
     } catch (error) {
       console.log(`Error in updateProduct: ${error}`);
